@@ -1,0 +1,15 @@
+llm:
+  provider: openai  # openai | claude | custom
+  api_key: your-api-key-here
+  model: gpt-4o
+  base_url: https://api.openai.com/v1  # optional, for custom endpoints (e.g. Xiaomi MiMo)
+
+agent:
+  max_iterations: 20
+  verbose: true
+  temperature: 0.3
+
+tools:
+  shell_enabled: true
+  file_read_enabled: true
+  file_write_enabled: false  # set to true to allow file modifications
