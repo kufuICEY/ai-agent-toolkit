@@ -1,0 +1,20 @@
+name: Example Multi-Agent Diagnostics Pipeline
+description: A 3-step pipeline for analyzing network issues in virtualized environments
+
+agents:
+  - id: collector
+    type: diagnostic
+    task: "Collect system and network configuration. Run ipconfig /all, check active network adapters, list firewall rules, and gather VBox/virtual network adapter info."
+    tools: [shell, file_read]
+
+  - id: analyzer
+    type: diagnostic
+    task: "Based on the collected data, analyze the root cause of the network issue. Look for conflicts between security software (firewall, ARP protection) and virtual network adapters. Identify specific blocking rules or configuration problems."
+    depends_on: [collector]
+    tools: [shell]
+
+  - id: reporter
+    type: diagnostic
+    task: "Generate a comprehensive diagnostic report with: 1) Root cause summary 2) Step-by-step fix instructions with exact commands 3) Prevention tips for the future"
+    depends_on: [analyzer]
+    tools: [shell]
